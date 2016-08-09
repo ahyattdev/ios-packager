@@ -52,6 +52,8 @@ rsync -ra -exclude .DS_Store DEBIAN "$packDir"
 
 lipo -create armv7/usr/local/bin/top armv7s/usr/local/bin/top -output $packDir/usr/local/bin/top
 
+ldid -S $packDir/usr/local/bin/top
+
 sudo chown -R root:wheel "$packDir"
 dpkg-deb --build -Zlzma "$packDir"
 
