@@ -1,0 +1,13 @@
+Package: top
+Priority: important
+Section: Administration
+Version: 3.7
+Architecture: iphoneos-arm
+Depends: ncurses
+Homepage: http://www.unixtop.org
+Maintainer: Andrew Hyatt <ahyattdev@icloud.com>
+Author: William LeFebvre
+Description: provides a rolling display of top CPU using processes
+ Top is a Unix utility that provides a rolling display of top CPU using processes.
+ .
+ Compiled for armv7 and armv7s devices
