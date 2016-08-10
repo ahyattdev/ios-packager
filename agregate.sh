@@ -2,7 +2,7 @@
 
 mkdir -p debs
 
-allPacakges="top"
+allPacakges="screen"
 function build_package {
   package=$1
   cd "$package"
