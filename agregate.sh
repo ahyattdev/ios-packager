@@ -2,7 +2,7 @@
 
 mkdir -p debs
 
-allPacakges="screen"
+allPacakges="screen vile"
 function build_package {
   package=$1
   cd "$package"
