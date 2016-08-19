@@ -70,6 +70,9 @@ then
     #sudo rm $packDir/usr/local/share/info/dir
 fi
 
+# Remove the remnants! OUT OUT OUT!
+find $packDir -name '*.DS_Store' -type f -delete
+
 sudo chown -R root:wheel "$packDir"
 dpkg-deb --build -Zlzma "$packDir"
 

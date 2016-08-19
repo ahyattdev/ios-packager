@@ -2,7 +2,7 @@
 
 name=nano
 sourceVersion=76a960d73df0461bde66fc25c3e0251b38eeb07f
-packageVersion=2.6.3
+packageVersion=2.6.3-1
 ext=tar.gz
 sourceDir=$ROOT/$name/${name}-${sourceVersion}
 echo $sourceDir
@@ -79,6 +79,9 @@ if [ -f $packDir/usr/local/share/info/dir ]
 then
     sudo rm $packDir/usr/local/share/info/dir
 fi
+
+# Remove the remnants! OUT OUT OUT!
+find $packDir -name '*.DS_Store' -type f -delete
 
 sudo chown -R root:wheel "$packDir"
 dpkg-deb --build -Zlzma "$packDir"

@@ -2,7 +2,7 @@ Package: libiconv
 Name: libiconv
 Priority: standard
 Section: Development
-Version: 1.14
+Version: 1.14-1
 Architecture: iphoneos-arm
 Depends: firmware (>= 8.0)
 Homepage: https://www.gnu.org/software/libiconv
