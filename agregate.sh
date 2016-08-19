@@ -4,7 +4,7 @@ ROOT=`realpath $0`
 export ROOT=`dirname $ROOT`
 mkdir -p debs
 
-allPacakges="nano"
+allPacakges="nano texinfo libiconv"
 function build_package {
   package=$1
   cd "$package"
