@@ -2,7 +2,7 @@
 
 name=libiconv
 sourceVersion=1.14
-packageVersion=1.14-1
+packageVersion=1.14-3
 ext=tar.gz
 sourceDir=$ROOT/$name/${name}-${sourceVersion}
 echo $sourceDir
@@ -74,7 +74,12 @@ done
 
 if [ -f $packDir/usr/local/share/info/dir ]
 then
-    sudo rm $packDir/usr/local/share/info/dir
+    rm $packDir/usr/local/share/info/dir
+fi
+
+if [ -f $packDir/usr/local/lib/charset.alias ]
+then
+    rm $packDir/$prefix/lib/charset.alias
 fi
 
 # Remove the remnants! OUT OUT OUT!

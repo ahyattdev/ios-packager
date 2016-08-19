@@ -2,7 +2,7 @@ Package: nano
 Name: nano
 Priority: standard
 Section: Text_Editors
-Version: 2.6.3-1
+Version: 2.6.3-3
 Architecture: iphoneos-arm
 Depends: ncurses
 Homepage: https://www.nano-editor.org
