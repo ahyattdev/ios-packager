@@ -20,7 +20,7 @@ tar xf ${name}.${ext}
 cd $sourceDir
 
 mkdir extra-hdrs
-cp $MACSDK/usr/include/{curses.h,ncurses.h,ncurses_dll.h,unctrl.h,libintl.h,termcap.h} extra-hdrs
+cp $MACSDK/usr/include/{crt_externs.h,libintl.h,termcap.h} extra-hdrs
 
 export CC=clang
 export CXX=clang++
@@ -28,7 +28,7 @@ export ORIGCFLAGS="-isysroot $IOSSDK -I`pwd`/extra-hdrs"
 
 export CFLAGS="$ORIGCFLAGS -arch armv7"
 
-./configure --host armv7-apple-darwin
+./configure --host arm-apple-darwin
 
 make
 make install DESTDIR=$armv7dir
@@ -36,7 +36,7 @@ make clean
 
 export CFLAGS="$ORIGCFLAGS -arch armv7s"
 
-./configure --host armv7s-apple-darwin
+./configure --host armv-apple-darwin
 
 make
 make install DESTDIR=$armv7sdir
@@ -44,7 +44,7 @@ make clean
 
 export CFLAGS="$ORIGCFLAGS -arch arm64"
 
-./configure --host aarch64-apple-darwin
+./configure --host arm-apple-darwin
 
 make
 make install DESTDIR=$arm64dir
@@ -60,15 +60,14 @@ fi
 rsync -ra --exclude .DS_Store $armv7dir/* "$packDir"
 rsync -ra -exclude .DS_Store DEBIAN "$packDir"
 
-lipo -create $armv7dir/usr/local/bin/${name} $armv7sdir/usr/local/bin/${name} $arm64dir/usr/local/bin/$name -output $packDir/usr/local/bin/${name}
+prefix=usr/local
+binaries="$prefix/bin/info $prefix/bin/install-info"
 
-ldid -S $packDir/usr/local/bin/${name}
-
-if [ -f $packDir/usr/local/share/info/dir ]
-then
-    # This is the one package that should have it
-    #sudo rm $packDir/usr/local/share/info/dir
-fi
+for binary in $binaries
+do
+    lipo -create $armv7dir/$binary $armv7sdir/$binary $arm64dir/$binary -output $packDir/$binary
+    ldid -S $packDir/$binary
+done
 
 # Remove the remnants! OUT OUT OUT!
 find $packDir -name '*.DS_Store' -type f -delete
@@ -79,6 +78,6 @@ dpkg-deb --build -Zlzma "$packDir"
 mv ${packDir}.deb $ROOT/debs
 
 rm $ROOT/$name/${name}.${ext}
-#sudo rm -r $packDir
+sudo rm -r $packDir
 sudo rm -r $sourceDir
 rm -r $armv7dir $armv7sdir $arm64dir
