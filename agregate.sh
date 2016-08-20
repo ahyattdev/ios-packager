@@ -4,7 +4,7 @@ ROOT=`realpath $0`
 export ROOT=`dirname $ROOT`
 mkdir -p debs
 
-allPacakges="man-db nano texinfo libiconv apt-file"
+allPacakges="man-db nano texinfo libiconv apt-file groff"
 function build_package {
   package=$1
   cd "$package"
