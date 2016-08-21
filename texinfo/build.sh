@@ -2,7 +2,7 @@
 
 name=texinfo
 sourceVersion=6.1
-packageVersion=6.1
+packageVersion=6.1-1
 ext=tar.gz
 sourceDir=$ROOT/$name/${name}-${sourceVersion}
 echo $sourceDir
@@ -68,6 +68,14 @@ do
     lipo -create $armv7dir/$binary $armv7sdir/$binary $arm64dir/$binary -output $packDir/$binary
     ldid -S $packDir/$binary
 done
+
+# The copy update-info-dir step
+mkdir -p $packDir/usr/local/sbin
+cp $ROOT/$name/update-info-dir $packDir/usr/local/sbin
+
+# It is sbin, after all
+sudo chmod +s $packDir/usr/local/sbin
+sudo chmod +s $packDir/usr/local/sbin/update-info-dir
 
 # Remove the remnants! OUT OUT OUT!
 find $packDir -name '*.DS_Store' -type f -delete
