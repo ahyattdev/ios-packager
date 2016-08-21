@@ -2,7 +2,7 @@ Package: texinfo
 Name: texinfo
 Priority: standard
 Section: System
-Version: 6.1-1
+Version: 6.1-2
 Architecture: iphoneos-arm
 Depends: perl
 Homepage: https://www.gnu.org/software/texinfo

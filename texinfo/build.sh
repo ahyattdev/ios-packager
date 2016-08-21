@@ -2,7 +2,7 @@
 
 name=texinfo
 sourceVersion=6.1
-packageVersion=6.1-1
+packageVersion=6.1-2
 ext=tar.gz
 sourceDir=$ROOT/$name/${name}-${sourceVersion}
 echo $sourceDir

@@ -1,1 +1,2 @@
-interest /usr/share/info
+interest-noawait /usr/local/share/info
+interest-noawait /usr/share/info

@@ -63,7 +63,7 @@ find "$INFODIR" -type f | while read file ; do
       continue
       ;;
     *)
-      ginstall-info "$file" "$INFODIR/dir" || {
+      install-info "$file" "$INFODIR/dir" || {
         errors=$[errors+1]
       }
       ;;
