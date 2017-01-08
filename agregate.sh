@@ -1,18 +1,30 @@
 #!/bin/bash
 
-ROOT=`realpath $0`
-export ROOT=`dirname $ROOT`
-mkdir -p debs
+export DEB_DIR=debs
+mkdir -p "$DEB_DIR"
+
+export SDK=`xcrun -sdk iphoneos --show-sdk-path`
+export ARCHS="-arch armv7 -arch armv7s -arch arm64"
+
+export MAINTAINER="Andrew Hyatt <ahyattdev@icloud.com"
+
+export ARCHITECTURE=iphoneos-arm
 
 allPacakges="man-db nano texinfo libiconv apt-file groff"
+
+function recursive_ldid() {
+    find "$1" -type f -perm +x -exec ldid -S {} \;
+}
+export -f recursive_ldid
+
 function build_package {
   package=$1
-  cd "$package"
+  pushd "$package"
   ./build.sh
-  cd ..
+  popd
 }
 
-if [ -z ${1+x} ]; then
+if [ -z $1 ]; then
   for package in "$allPacakges"
   do
     build_package $package
@@ -20,11 +32,6 @@ if [ -z ${1+x} ]; then
 else
     for package in "$@"
     do
-      if [ -d "$package" ]; then
-        echo "Building: $package"
-        build_package "$package"
-      else
-        echo "Package not found: $package"
-      fi
+        build_package $package
     done
 fi

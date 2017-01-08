@@ -1,2 +1,5 @@
 debs
 .DS_Store
+controlstub
+*.tar.gz
+*.deb
