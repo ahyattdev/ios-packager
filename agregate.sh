@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 
-export DEB_DIR=debs
+export DEB_DIR="`pwd`/debs"
 mkdir -p "$DEB_DIR"
 
 export SDK=`xcrun -sdk iphoneos --show-sdk-path`
@@ -23,6 +24,11 @@ function build_package {
   ./build.sh
   popd
 }
+
+if [ $1 == clean ]
+then
+    exec rm -r "$DEB_DIR"
+fi
 
 if [ -z $1 ]; then
   for package in "$allPacakges"
