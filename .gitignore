@@ -3,3 +3,4 @@ debs
 controlstub
 *.tar.gz
 *.deb
+*/*-*
