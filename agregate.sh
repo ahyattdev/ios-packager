@@ -2,7 +2,12 @@
 set -e
 
 export DEB_DIR="`pwd`/debs"
+export POOLROOT="`pwd`/poolroot"
+export POOLLIB="$POOLROOT/usr/lib"
+export POOLINC="$POOLROOT/usr/include"
+
 mkdir -p "$DEB_DIR"
+mkdir -p "$POOLROOT"
 
 export JOBS=4
 

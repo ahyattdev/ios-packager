@@ -30,7 +30,10 @@ then
 
     pushd $SOURCE_DIR
 
-    ./configure CFLAGS="$ARCHS -isysroot $SDK -I$GPG_ERROR_PREFIX/include -L$GPG_ERROR_PREFIX/lib" --host arm-apple-darwin --prefix=/usr --with-gpg-error-prefix="$GPG_ERROR_PREFIX"
+    ./configure CFLAGS="$ARCHS -isysroot $SDK -I$POOLINC -L$POOLLIB" \
+    --host arm-apple-darwin --prefix=/usr \
+    SYSROOT="$POOLROOT"/usr
+
     make -j$JOBS
     make install DESTDIR="`pwd`/../$PACKAGE_DIR"
 
@@ -38,6 +41,7 @@ then
 
     recursive_ldid "$PACKAGE_DIR"
 
+    cp -r "$PACKAGE_DIR"/* "$POOLROOT"
     cp -r DEBIAN "$PACKAGE_DIR/DEBIAN"
 
     echo "Package: $NAME" >> controlstub

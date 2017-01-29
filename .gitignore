@@ -4,3 +4,4 @@ controlstub
 *.tar.gz
 *.deb
 */*-*
+poolroot

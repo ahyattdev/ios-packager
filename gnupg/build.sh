@@ -30,7 +30,9 @@ then
 
     pushd $SOURCE_DIR
 
-    ./configure CFLAGS="$ARCHS -isysroot $SDK -Wl,-flat_namespace,-undefined,suppress -L/usr/local/Cellar/libusb/1.0.20/lib" --host arm-apple-darwin --prefix=/usr
+    ./configure CFLAGS="$ARCHS -isysroot $SDK -I$POOLINC -L$POOLLIB" \
+    --host arm-apple-darwin --prefix=/usr \
+    SYSROOT="$POOLROOT"/usr
     make -j$JOBS
     make install DESTDIR="`pwd`/../$PACKAGE_DIR"
 

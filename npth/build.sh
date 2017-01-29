@@ -1,9 +1,9 @@
 set -e
 
-NAME=libgpg-error
-DISPLAY_NAME="Libgpg-error"
-SOURCE_VERSION=1.26
-PACKAGE_VERSION=1.26
+NAME=npth
+DISPLAY_NAME="nPth"
+SOURCE_VERSION=1.3
+PACKAGE_VERSION=1.3
 EXT=.tar.bz2
 ARCHIVE_NAME=$NAME-${SOURCE_VERSION}$EXT
 SOURCE_DIR=$NAME-$SOURCE_VERSION
@@ -30,7 +30,7 @@ then
 
     pushd $SOURCE_DIR
 
-    ./configure CFLAGS="$ARCHS -isysroot $SDK" --host arm-apple-darwin --prefix=/usr
+    ./configure CFLAGS="$ARCHS -isysroot $SDK -Wno-error=implicit-function-declaration" --host arm-apple-darwin --prefix=/usr
     make -j$JOBS
     make install DESTDIR="`pwd`/../$PACKAGE_DIR"
 
