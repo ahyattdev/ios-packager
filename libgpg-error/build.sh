@@ -1,9 +1,9 @@
 set -e
 
-NAME=gnupg
-DISPLAY_NAME="GNU Privacy Guard"
-SOURCE_VERSION=2.1.17
-PACKAGE_VERSION=2.1.17
+NAME=libgpg-error
+DISPLAY_NAME="Libgpg-error"
+SOURCE_VERSION=1.26
+PACKAGE_VERSION=1.26
 EXT=.tar.bz2
 ARCHIVE_NAME=$NAME-${SOURCE_VERSION}$EXT
 SOURCE_DIR=$NAME-$SOURCE_VERSION
@@ -30,7 +30,7 @@ then
 
     pushd $SOURCE_DIR
 
-    ./configure CFLAGS="$ARCHS -isysroot $SDK -Wl,-flat_namespace,-undefined,suppress -L/usr/local/Cellar/libusb/1.0.20/lib" --host arm-apple-darwin --prefix=/usr
+    ./configure CFLAGS="$ARCHS -isysroot $SDK" --host arm-apple-darwin --prefix=/usr
     make -j$JOBS
     make install DESTDIR="`pwd`/../$PACKAGE_DIR"
 

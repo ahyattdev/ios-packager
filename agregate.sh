@@ -7,11 +7,14 @@ mkdir -p "$DEB_DIR"
 export JOBS=4
 
 export SDK=`xcrun -sdk iphoneos --show-sdk-path`
+export MACSDK=`xcrun -sdk macosx --show-sdk-path`
 export ARCHS="-arch armv7 -arch armv7s -arch arm64"
 
 export MAINTAINER="Andrew Hyatt <ahyattdev@icloud.com"
 
 export ARCHITECTURE=iphoneos-arm
+
+export GPG_ERROR_PREFIX="`pwd`/libgpg-error/libgpg-error_1.26_iphoneos-arm/usr"
 
 allPacakges="man-db nano texinfo libiconv apt-file groff"
 
